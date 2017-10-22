@@ -1,12 +1,14 @@
 var conn = require('./db');
 var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
 
-var express = require('express');
-var app = express();
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+//var bodyParser = require('body-parser');
+
+var router = express.Router();
+
+
+//var app = express();
+//app.use(bodyParser.json()); // support json encoded bodies
+//app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 router.get('/all', function(req, res){
 
@@ -42,5 +44,15 @@ router.get('/', function(req, res) {
         res.send(rows);
     });
   });
+
+//update product
+router.put('/edit',function(req,res){
+    var product_id = req.body.id;
+    if(product_id < 1)
+    {
+        res.status(400).send('Invalid Product ID');
+        return;
+    }
+});
 
 module.exports = router;
